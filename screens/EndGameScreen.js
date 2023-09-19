@@ -1,4 +1,4 @@
-import { Image, View, StyleSheet, Text } from "react-native";
+import { Image, View, StyleSheet, Text, Dimensions } from "react-native";
 import Title from "../components/ui/Title";
 import Color from "../utils/colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -20,7 +20,9 @@ function EndGameScreen({roundsNumber, userNumber, onStartNewGame}) {
       <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
   );
-}
+};
+
+const deviceWidth = Dimensions.get("window").width; 
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -30,9 +32,9 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginTop: 20,
-    width: 300,
-    height: 300,
-    borderRadius: 200,
+    width: deviceWidth < 30 ? 200 : 300,
+    height: deviceWidth < 30 ? 200 : 300,
+    borderRadius: deviceWidth < 350 ? 150 : 200,
     borderWidth: 2,
     borderColor: Color.accent700,
     overflow: "hidden",
