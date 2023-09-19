@@ -10,6 +10,7 @@ export default function App() {
 
   const [userInput, setUserInput] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
  
   function pickedUserInputHandler(inputedNumber){
@@ -17,8 +18,14 @@ export default function App() {
     setGameIsOver(false);
   };
 
-  function gameEndHandler(){
+  function gameEndHandler(numberOfRounds){
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
+  };
+
+  function startNewGameHandler(){
+    setUserInput(null);
+    setGuessRounds(0);
   };
 
   let screen = <StartGameScreen onNumberInput= {pickedUserInputHandler} />;
@@ -28,7 +35,7 @@ export default function App() {
   }
 
   if (gameIsOver && userInput){
-    screen = <EndGameScreen/>;
+    screen = <EndGameScreen roundsNumber= {guessRounds} userNumber= {userInput} onStartNewGame= {startNewGameHandler} />;
   }
 
 

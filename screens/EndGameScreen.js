@@ -1,10 +1,11 @@
 import { Image, View, StyleSheet, Text } from "react-native";
 import Title from "../components/ui/Title";
 import Color from "../utils/colors";
+import PrimaryButton from "../components/ui/PrimaryButton";
 
-function EndGameScreen() {
+function EndGameScreen({roundsNumber, userNumber, onStartNewGame}) {
   return (
-    <View style= {styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <Title>GAME OVER....!</Title>
       <View style={styles.imageContainer}>
         <Image
@@ -12,7 +13,11 @@ function EndGameScreen() {
           source={require("../assets/images/game-over.jpg")}
         />
       </View>
-      <Text>Your Phone Uses X Rounds To Guess Y Number</Text>
+      <Text style={styles.summeryText}>
+        Your Phone Uses <Text style={styles.heighlightText}>{roundsNumber}</Text> Rounds To
+        Guess <Text style={styles.heighlightText}>{userNumber}</Text> Number
+      </Text>
+      <PrimaryButton onPress={onStartNewGame}>Start New Game</PrimaryButton>
     </View>
   );
 }
@@ -35,6 +40,16 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  summeryText: {
+    color: Color.primary500,
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 30,
+  },
+  heighlightText: {
+    fontWeight: "bold",
+    color: Color.priimary800,
   },
 });
 
